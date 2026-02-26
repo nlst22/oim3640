@@ -13,3 +13,6 @@ I chose this project because I have personally experienced the hassle of splitti
 1. I don't know how to create a login page and create user ids
 2. how handle uneven splits 
 3. create user freindly UI 
+
+** Feedback **
+Layla suggested that I should have tax rates for diffrent states. I should also have things like tax and tip as fixed items that are always split evenly among all members of the group. 
