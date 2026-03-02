@@ -27,13 +27,21 @@ Layla suggested that I should have tax rates for diffrent states. I should also 
 1. User selects "Split a Bill" or "Split Trip Expenses"
 -> If "Split a Bill": Evenly 
 2. User inputs bill subtotal and number of people
-3. User inputs state they are in (for tax calculation)
+3. User inputs tax rate or amount (or selects state for tax calculation)
 4. User inputs tip percentage or amount
 5. App calculates and displays the final total, tax, tip, and individual shares for each person in the group in a short summary format
 -> If "Split a Bill": Unevenly
 2. User inputs bill subtotal and number of people
-3. User inputs state they are in (for tax calculation)
+3. User inputs tax rate or amount (or selects state for tax calculation)
 4. User inputs tip percentage or amount
 5. For each person: “Enter item price, or done”
 6. For shared:“Enter shared item price, or done”
 7. App calculates and displays the final total, tax, tip, and individual shares for each person in the group in a short summary format
+
+**Feature Additions:**
+1. creating the ability for the user to just type in their state and have the tax calculated for them
+
+**Work Flow thought process:**
+1. I am going to build out the most basic functionalities first and then later add more featuers then I will work on UI and presentation.
+2. I am going to first build out the even split functionality and then move on to the uneven splits
+
