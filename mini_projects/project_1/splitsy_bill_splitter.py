@@ -1,5 +1,9 @@
 # Collecting user input for even bill splitting (subtotal, tax, tip)
 # Function to collect inputs from user and math for the bill total
+
+from colorama import Fore, Style, init
+init()
+
 def compute_total(subtotal, tax_pct, tip_pct):
     """ Calculate tax, tip, and final total for a bill.
     Parameters:
@@ -34,7 +38,7 @@ def get_float(prompt, min_value=0):
         try:
             value = float(input(prompt))
 
-            if value < min_value:
+            if value <= min_value:
                 print(f"Value must be at least {min_value}. Please try again.")
                 continue
 
@@ -73,20 +77,31 @@ def main():
     print("=== Even Bill Splitter ===")
 
     subtotal = get_float("Enter bill subtotal: $")
-    tax_pct = get_float("Enter Tax % (e.g., 6.25): ", min_value=0)
-    tip_pct = get_float("Enter Tip % (e.g., 20): ", min_value=0)
-    n_people = get_int("Enter number of people: ", min_value=1)
+    tax_pct = get_float("Enter Tax % (e.g., 6.25): ", 0.01)
+    tip_pct = get_float("Enter Tip % (e.g., 20): ", 0)
+    n_people = get_int("Enter number of people: ", 1)
 
     tax, tip, final_total = compute_total(subtotal, tax_pct, tip_pct)
     each_person = split_evenly(final_total, n_people)
 
-    print("\n--- Summary ---")
-    print(f"Subtotal:    ${subtotal:.2f}")
-    print(f"Tax:         ${tax:.2f}")
-    print(f"Tip:         ${tip:.2f}")
-    print(f"Final Total: ${final_total:.2f}")
-    print(f"Per Person:  ${each_person:.2f}")
+    line = "-" * 40
+    bold_line = "=" * 40
 
+    print("\n" + bold_line)
+    print("        EVEN BILL SPLIT SUMMARY")
+    print(bold_line)
+
+    print(f"Subtotal:        ${subtotal:>8.2f}")
+    print(f"Tax:             ${tax:>8.2f}")
+    print(f"Tip:             ${tip:>8.2f}")
+    print(f"Final Total:     ${final_total:>8.2f}")
+
+    print(line)
+
+    print(f"Split between:   {n_people} people")
+    print(f"{Fore.GREEN}Each person owes ${each_person:>8.2f}{Style.RESET_ALL}")
+
+    print(bold_line)
 
 if __name__ == "__main__":
     main()
