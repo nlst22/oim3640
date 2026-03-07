@@ -17,11 +17,11 @@ def compute_total(subtotal, tax_pct, tip_pct):
     tip = subtotal * (tip_pct / 100)
     final_total = subtotal + tax + tip
     return tax, tip, final_total
-####################################################
+
 def split_evenly(final_total, n_people):
     """Split the final total evenly among the number of people."""
     return final_total / n_people
-##################################################
+
 def get_float(prompt, min_value=0):
     """
     Prompt the user for a floating point number and validate the input.
@@ -47,7 +47,7 @@ def get_float(prompt, min_value=0):
         except ValueError:
             print("Please enter a valid number.")
 
-#################################################
+
 def get_int(prompt, min_value=1):
     """
     Prompt the user for an integer and validate the input.
@@ -73,7 +73,7 @@ def get_int(prompt, min_value=1):
         except ValueError:
             print("Please enter a valid whole number.")
 
-##########################################
+
 def run_even_split():
     """ first print a welcome message and then collect user input for the bill subtotal, tax percentage, tip percentage, and number of people to split the bill among. Then call the compute_total function to calculate the tax, tip, and final total. Finally, call the split_evenly function to calculate how much each person owes and print a summary of the bill and the amount each person owes. """
     print("=== Even Bill Splitter ===")
@@ -218,9 +218,7 @@ def run_uneven_split():
         print(f"{Fore.GREEN}Person {i} owes: ${owed:>8.2f}{Style.RESET_ALL}")
 
     print(bold_line)
-
-
-
+################################
 def show_home_menu():
     """Display the home menu options."""
     print("\n" + "=" * 40)
@@ -230,7 +228,7 @@ def show_home_menu():
     print("2) Split a bill by items (uneven)")
     print("3) Quit")
     print("=" * 40)
-##############################
+
 def main():
     """Home screen menu that routes to even or uneven split workflows."""
     while True:
