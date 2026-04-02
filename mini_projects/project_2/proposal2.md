@@ -9,7 +9,7 @@ I listen to this artist often and want to see whether their writing style change
 **Core features:**  
 - Load lyrics from multiple songs/albums stored in text files.  
 - Clean text (lowercase, remove punctuation, remove stop words).  
-- Compute per-album stats: total words, unique words, type-token ratio, and average word length.  
+- Compute per-album stats: total words, unique words, type-token ratio, and average word length, sentiment shift over time. 
 - Find most common words per album and words that are distinctive to each album.  
 - Create at least one visualization (e.g., bar chart of top words or vocabulary richness by album).
 
