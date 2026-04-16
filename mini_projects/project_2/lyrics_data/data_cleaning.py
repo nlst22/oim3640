@@ -2,11 +2,43 @@ import os
 import string
 
 stop_words = {
+    # --- Basic stop words ---
     "the", "and", "a", "an", "i", "you", "me", "my", "we", "our",
     "is", "it", "to", "of", "in", "on", "for", "with", "that",
     "this", "at", "by", "from", "be", "are", "was", "were",
-    "so", "but", "if", "or", "as", "not", "no", "just", 
-    "yeah", "oh", "ooh", "uh", "la", "na"
+    "so", "but", "if", "or", "as", "not", "no", "just",
+
+    # --- Pronouns & contractions ---
+    "he", "she", "him", "her", "his", "hers",
+    "they", "them", "their", "theirs",
+    "im", "youre", "hes", "shes", "were", "theyre",
+    "ive", "youve", "weve", "theyve",
+    "ill", "id", "cant", "dont", "wont",
+    "shouldnt", "couldnt", "wouldnt", "its", "your"
+
+    # --- Conversational / filler words ---
+    "about", "like", "know", "say", "said", "tell", "told",
+    "think", "when", "how", "now",
+    "really", "maybe", "guess", "wonder",
+    "time", "times", "day", "still", "back",
+
+    # --- Generic verbs (low meaning) ---
+    "get", "got", "make", "take", "give",
+    "go", "going", "gone", "come", "came",
+    "see", "find", "call",
+
+    # --- Lyrics-specific filler ---
+    "wanna", "gonna", "gotta",
+    "talkin", "talk", "lookin", "feelin",
+    "tryna", "goin", "comin", "doin",
+    "nothin", "somethin", "gettin",
+
+    # --- Sounds / noise ---
+    "yeah", "oh", "ooh", "uh",
+    "ah", "ahah", "ahha", "ahahah", "ahahahah",
+    "mm", "mmm", "mmmm",
+    "ohoh", "uhhuh", "haha", "ha",
+    "nananana", "nana", "lalalalalalala", "nonono"
 }
 
 # function to clean text
