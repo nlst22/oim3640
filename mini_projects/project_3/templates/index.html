@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}Find the Nearest MBTA Stop{% endblock %}
+
+{% block head %}
+  {% if mapbox_token and result %}
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.css" rel="stylesheet">
+  {% endif %}
+{% endblock %}
+
+{% block body %}
+  <main class="page-shell">
+    <section class="hero-card">
+      <p class="eyebrow">Mini Project 3</p>
+      <h1>Find the nearest MBTA stop from any address.</h1>
+      <p class="intro">
+        Enter a place in or near Boston and this app will geocode the location, find the closest MBTA stop,
+        and report its wheelchair accessibility.
+      </p>
+
+      <form method="post" class="search-form">
+        <label for="location">Address or location</label>
+        <div class="search-row">
+          <input
+            id="location"
+            name="location"
+            type="text"
+            value="{{ query }}"
+            placeholder="Example: 800 Boylston St, Boston, MA"
+            required
+          >
+          <button type="submit">Search</button>
+        </div>
+      </form>
+
+      {% if error %}
+        <div class="message error">{{ error }}</div>
+      {% endif %}
+
+      {% if not mapbox_token %}
+        <div class="message info">
+          `MAPBOX_ACCESS_TOKEN` is not set, so the app will use an OpenStreetMap geocoding fallback.
+        </div>
+      {% endif %}
+    </section>
+
+    {% if result %}
+      <section class="results-grid">
+        <article class="panel">
+          <h2>Search Result</h2>
+          <dl class="details">
+            <div>
+              <dt>Matched location</dt>
+              <dd>{{ result.searched_place.name }}</dd>
+            </div>
+            <div>
+              <dt>Geocoder</dt>
+              <dd>{{ result.searched_place.source }}</dd>
+            </div>
+            <div>
+              <dt>Coordinates</dt>
+              <dd>{{ "%.5f"|format(result.searched_place.latitude) }}, {{ "%.5f"|format(result.searched_place.longitude) }}</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="panel accent">
+          <h2>Nearest Stop</h2>
+          <p class="stop-name">{{ result.nearest_stop.name }}</p>
+          <p class="status">{{ result.nearest_stop.wheelchair_status }}</p>
+
+          <dl class="details">
+            <div>
+              <dt>Approximate distance</dt>
+              <dd>
+                {% if result.nearest_stop.distance_miles is not none %}
+                  {{ result.nearest_stop.distance_miles }} miles
+                {% else %}
+                  Not available
+                {% endif %}
+              </dd>
+            </div>
+            <div>
+              <dt>Municipality</dt>
+              <dd>{{ result.nearest_stop.municipality or "Not listed" }}</dd>
+            </div>
+            <div>
+              <dt>Address</dt>
+              <dd>{{ result.nearest_stop.address or "Not listed" }}</dd>
+            </div>
+          </dl>
+        </article>
+      </section>
+
+      {% if mapbox_token %}
+        <section class="panel map-panel">
+          <div class="map-copy">
+            <h2>Map View</h2>
+            <p>The map shows the searched location and the nearest MBTA stop.</p>
+          </div>
+          <div id="map" class="map"></div>
+        </section>
+      {% endif %}
+    {% endif %}
+  </main>
+
+  {% if mapbox_token and result %}
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.js"></script>
+    <script>
+      mapboxgl.accessToken = {{ mapbox_token | tojson }};
+
+      const searchedPlace = {{ result.searched_place | tojson }};
+      const nearestStop = {{ result.nearest_stop | tojson }};
+
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/light-v11",
+        center: [searchedPlace.longitude, searchedPlace.latitude],
+        zoom: 13
+      });
+
+      map.addControl(new mapboxgl.NavigationControl());
+
+      new mapboxgl.Marker({ color: "#1d4ed8" })
+        .setLngLat([searchedPlace.longitude, searchedPlace.latitude])
+        .setPopup(new mapboxgl.Popup().setHTML(`<strong>Search location</strong><br>${searchedPlace.name}`))
+        .addTo(map);
+
+      if (nearestStop.longitude && nearestStop.latitude) {
+        new mapboxgl.Marker({ color: "#ea580c" })
+          .setLngLat([nearestStop.longitude, nearestStop.latitude])
+          .setPopup(new mapboxgl.Popup().setHTML(`<strong>${nearestStop.name}</strong><br>${nearestStop.wheelchair_status}`))
+          .addTo(map);
+      }
+    </script>
+  {% endif %}
+{% endblock %}
