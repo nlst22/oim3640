@@ -57,18 +57,67 @@
             <div class="item-row">
               <input name="item_name" type="text" value="{{ item.name }}" placeholder="Item name">
               <input name="item_price" type="number" min="0" step="0.01" value="{{ item.price }}" placeholder="Price">
-              <select name="assigned_to">
+              <select name="assigned_to" data-selected="{{ item.assigned_to or 'Shared' }}">
                 <option value="Shared">Shared</option>
-                <option value="Person 1">Person 1</option>
-                <option value="Person 2">Person 2</option>
               </select>
             </div>
           {% endfor %}
         </div>
 
-        <p class="hint">For the basic version, the dropdown supports two people plus shared items. If you rename the people above, Person 1 maps to the first name and Person 2 maps to the second.</p>
+        <p class="hint">Enter names separated by commas. The assignment menus update automatically and always include Shared.</p>
         <button type="submit">Calculate Split</button>
       </form>
     </section>
   </main>
+
+  <script>
+    const peopleInput = document.getElementById("people");
+    const assignmentSelects = document.querySelectorAll('select[name="assigned_to"]');
+
+    function getPeopleNames() {
+      const names = peopleInput.value
+        .split(",")
+        .map((name) => name.trim())
+        .filter(Boolean);
+
+      return names.length ? names : ["Person 1", "Person 2"];
+    }
+
+    function rebuildAssignmentMenus() {
+      const names = getPeopleNames();
+
+      assignmentSelects.forEach((select) => {
+        const previousValue = select.value || select.dataset.selected || "Shared";
+        select.innerHTML = "";
+
+        const sharedOption = document.createElement("option");
+        sharedOption.value = "Shared";
+        sharedOption.textContent = "Shared";
+        select.appendChild(sharedOption);
+
+        names.forEach((name) => {
+          const option = document.createElement("option");
+          option.value = name;
+          option.textContent = name;
+          select.appendChild(option);
+        });
+
+        const nextValue = names.includes(previousValue) || previousValue === "Shared"
+          ? previousValue
+          : "Shared";
+
+        select.value = nextValue;
+        select.dataset.selected = nextValue;
+      });
+    }
+
+    assignmentSelects.forEach((select) => {
+      select.addEventListener("change", () => {
+        select.dataset.selected = select.value;
+      });
+    });
+
+    peopleInput.addEventListener("input", rebuildAssignmentMenus);
+    rebuildAssignmentMenus();
+  </script>
 {% endblock %}
