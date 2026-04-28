@@ -4,16 +4,33 @@
 
 {% block body %}
   <main class="page-shell">
-    <section class="hero compact">
-      <p class="eyebrow">Receipt Splitter</p>
-      <h1>Split Summary</h1>
-      <p class="intro">This uses the same Project 1 idea: item totals first, then tax and tip split evenly.</p>
-      <p class="version">{{ app_version }}</p>
+    <section class="hero-band compact">
+      <div class="hero-copy">
+        <p class="eyebrow">Receipt Splitter</p>
+        <h1>Split Summary</h1>
+        <p class="intro">Review the table totals, confirm each assigned item, and use the summary below as your final bill breakdown.</p>
+        <div class="step-strip">
+          <span class="step-pill">1. Import receipt</span>
+          <span class="step-pill">2. Review items</span>
+          <span class="step-pill">3. Assign people</span>
+          <span class="step-pill active">4. See totals</span>
+        </div>
+      </div>
+      <aside class="hero-receipt">
+        <div class="receipt-paper">
+          <p class="receipt-title">Final Check</p>
+          <div class="receipt-line"><span>People</span><span>{{ result.people|length }}</span></div>
+          <div class="receipt-line"><span>Items</span><span>{{ result["items"]|length }}</span></div>
+          <div class="receipt-line total-line"><span>Total due</span><span>${{ result.final_total }}</span></div>
+        </div>
+        <p class="version">{{ app_version }}</p>
+      </aside>
     </section>
 
     <section class="results-grid">
       {% for person in result.people %}
         <article class="person-card">
+          <p class="section-kicker">Guest total</p>
           <h2>{{ person.name }}</h2>
           <dl>
             <div>
@@ -34,49 +51,63 @@
       {% endfor %}
     </section>
 
-    <section class="panel">
-      <h2>Receipt Items</h2>
-      <div class="table">
-        <div class="table-head">
-          <span>Item</span>
-          <span>Assigned to</span>
-          <span>Price</span>
-        </div>
-        {% for item in result["items"] %}
-          <div class="table-row">
-            <span>{{ item.name }}</span>
-            <span>{{ item.assigned_to }}</span>
-            <span>${{ item.price }}</span>
+    <section class="workspace-grid results-layout">
+      <section class="panel summary spotlight">
+        <div class="section-heading">
+          <span class="step-number">3</span>
+          <div>
+            <p class="section-kicker">Bill Totals</p>
+            <h2>Dining summary</h2>
           </div>
-        {% endfor %}
-      </div>
-    </section>
+        </div>
+        <dl>
+          <div>
+            <dt>Shared items</dt>
+            <dd>${{ result.shared_total }}</dd>
+          </div>
+          <div>
+            <dt>Subtotal</dt>
+            <dd>${{ result.subtotal }}</dd>
+          </div>
+          <div>
+            <dt>Tax</dt>
+            <dd>${{ result.tax }}</dd>
+          </div>
+          <div>
+            <dt>Tip</dt>
+            <dd>${{ result.tip }}</dd>
+          </div>
+          <div>
+            <dt>Final total</dt>
+            <dd>${{ result.final_total }}</dd>
+          </div>
+        </dl>
+        <a class="button-link" href="{{ url_for('index') }}">Start Another Receipt</a>
+      </section>
 
-    <section class="panel summary">
-      <h2>Bill Totals</h2>
-      <dl>
-        <div>
-          <dt>Shared items</dt>
-          <dd>${{ result.shared_total }}</dd>
+      <section class="panel">
+        <div class="section-heading">
+          <span class="step-number">4</span>
+          <div>
+            <p class="section-kicker">Receipt Items</p>
+            <h2>Assigned dishes</h2>
+          </div>
         </div>
-        <div>
-          <dt>Subtotal</dt>
-          <dd>${{ result.subtotal }}</dd>
+        <div class="table">
+          <div class="table-head">
+            <span>Item</span>
+            <span>Assigned to</span>
+            <span>Price</span>
+          </div>
+          {% for item in result["items"] %}
+            <div class="table-row">
+              <span>{{ item.name }}</span>
+              <span>{{ item.assigned_to }}</span>
+              <span>${{ item.price }}</span>
+            </div>
+          {% endfor %}
         </div>
-        <div>
-          <dt>Tax</dt>
-          <dd>${{ result.tax }}</dd>
-        </div>
-        <div>
-          <dt>Tip</dt>
-          <dd>${{ result.tip }}</dd>
-        </div>
-        <div>
-          <dt>Final total</dt>
-          <dd>${{ result.final_total }}</dd>
-        </div>
-      </dl>
-      <a class="button-link" href="{{ url_for('index') }}">Start Another Receipt</a>
+      </section>
     </section>
   </main>
 {% endblock %}

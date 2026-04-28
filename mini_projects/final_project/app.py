@@ -12,7 +12,7 @@ except ImportError:
 def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = "receipt-splitter-dev"
-    app.config["APP_VERSION"] = "OCR debug version 3"
+    app.config["APP_VERSION"] = "OCR debug version 4"
 
     @app.context_processor
     def inject_app_version():
@@ -56,10 +56,14 @@ def create_app():
 
         names = request.form.getlist("item_name")
         prices = request.form.getlist("item_price")
-        assigned = request.form.getlist("assigned_to")
+        item_count = max(len(names), len(prices))
 
         items = []
-        for name, price, assigned_to in zip(names, prices, assigned):
+        for index in range(item_count):
+            name = names[index] if index < len(names) else ""
+            price = prices[index] if index < len(prices) else ""
+            assigned_to = request.form.getlist(f"assigned_to_{index}")
+
             if name.strip() or price.strip():
                 items.append(
                     {

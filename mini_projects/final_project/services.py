@@ -143,21 +143,36 @@ def calculate_itemized_split(items, people, tax_pct=0, tip_pct=0):
         name = item.get("name", "").strip() or "Receipt item"
         price = money(item.get("price", "0"))
         assigned_to = item.get("assigned_to", "Shared")
+        if isinstance(assigned_to, str):
+            assigned_people = [assigned_to] if assigned_to and assigned_to != "Shared" else []
+        else:
+            assigned_people = [person for person in assigned_to if person in base_totals]
 
         if price <= 0:
             continue
 
-        if assigned_to == "Shared" or assigned_to not in base_totals:
+        if not assigned_people:
             shared_total += price
-            assigned_to = "Shared"
+            assigned_label = "Shared"
         else:
-            base_totals[assigned_to] += price
+            split_count = Decimal(len(assigned_people))
+            split_amount = (price / split_count).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+            running_total = split_amount * split_count
+            remainder = price - running_total
+
+            for index, person in enumerate(assigned_people):
+                person_share = split_amount
+                if index == len(assigned_people) - 1:
+                    person_share += remainder
+                base_totals[person] += person_share
+
+            assigned_label = ", ".join(assigned_people)
 
         cleaned_items.append(
             {
                 "name": name,
                 "price": format_money(price),
-                "assigned_to": assigned_to,
+                "assigned_to": assigned_label,
             }
         )
 
