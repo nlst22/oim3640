@@ -2,6 +2,12 @@
 
 Receipt Splitter is a Flask web app that builds on Project 1's itemized bill-splitting logic. It takes receipt text or a receipt image, extracts likely items and prices, lets you assign each item to one person or a subset of the group, and calculates what everyone owes.
 
+## Live app
+
+Try the deployed version here:
+
+https://bill-splitter-18eb.onrender.com/
+
 ## Current features
 
 - upload a receipt image, text file, or CSV file
@@ -43,33 +49,6 @@ From the repository root:
 
 ```powershell
 pip install -r mini_projects/final_project/requirements.txt
-```
-
-## Run locally
-
-From the repository root:
-
-```powershell
-python mini_projects/final_project/app.py
-```
-
-Then open:
-
-```text
-http://127.0.0.1:5000
-```
-
-If port `5000` is already being used, you can run on another port:
-
-```powershell
-$env:PORT="5051"
-python mini_projects/final_project/app.py
-```
-
-Then open:
-
-```text
-http://127.0.0.1:5051
 ```
 
 ## OCR setup note
