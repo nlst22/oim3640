@@ -12,7 +12,7 @@ https://receipt-splitter-l9w7.onrender.com
 
 Project demo video: Local usage of OCR
 
-[final_project_demo_video.mp4](./final_project_demo_video.mp4)
+[OCR demo](https://babson-my.sharepoint.com/:v:/g/personal/nladda1_babson_edu/IQAHbdFC4vOjR437bGqDLI7vAfDbX-7A2fxXNDaMAnjs7Hw?e=V5wjSS&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
 
 ## Current features
 
