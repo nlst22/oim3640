@@ -1,0 +1,26 @@
+Sabrina Carpenter Lyrics Analysis
+
+Question 1: Which album has richer vocabulary?
+
+Short n' Sweet: total words=1480, unique words=584, type-token ratio=0.395, average word length=5.04
+emails i can't send: total words=1574, unique words=607, type-token ratio=0.386, average word length=5.24
+
+Finding: Short n' Sweet has the richer vocabulary based on type-token ratio.
+
+Question 2: What words are most distinctive to each album?
+
+Short n' Sweet:
+Top words: please (34), baby (21), thats (19), fuck (17), want (16), good (16), right (16), lie (16), down (15), love (15)
+Distinctive words: please (34), lie (16), girls (15), thats (19), fuck (17), chem (12), taste (11), cry (10), sweet (10), espresso (10)
+
+emails i can't send:
+Top words: bet (20), mind (19), why (18), baby (16), love (15), fast (15), could (14), things (14), over (13), good (13)
+Distinctive words: why (18), mind (19), many (12), could (14), decode (10), things (14), vicious (9), liked (9), before (9), didnt (10)
+
+Interpretation:
+Short n' Sweet repeats playful and sharp words like 'please', 'lie', 'girls', and 'taste'.
+emails i can't send leans more toward reflective words like 'mind', 'why', 'things', and 'decode'.
+
+Built-in Python vs libraries reflection:
+Doing the counting and cleaning with plain strings, lists, dictionaries, and sets made the logic much clearer.
+Creating the charts as SVG files took more work than using a plotting library, but it kept the project self-contained and made the visualization logic easier to understand.

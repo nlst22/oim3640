@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500">
+<rect width="900" height="500" fill="white" />
+<text x="450.0" y="30" text-anchor="middle" font-size="22" font-family="Arial">Top Words in Short n' Sweet</text>
+<line x1="70" y1="360" x2="870" y2="360" stroke="black" />
+<line x1="70" y1="60" x2="70" y2="360" stroke="black" />
+<rect x="80.00" y="60.00" width="60.00" height="300.00" fill="#4C78A8" />
+<text x="110.00" y="52.00" text-anchor="middle" font-size="12" font-family="Arial">34</text>
+<text x="110.00" y="380.00" text-anchor="end" transform="rotate(-35 110.00,380.00)" font-size="12" font-family="Arial">please</text>
+<rect x="160.00" y="174.71" width="60.00" height="185.29" fill="#4C78A8" />
+<text x="190.00" y="166.71" text-anchor="middle" font-size="12" font-family="Arial">21</text>
+<text x="190.00" y="380.00" text-anchor="end" transform="rotate(-35 190.00,380.00)" font-size="12" font-family="Arial">baby</text>
+<rect x="240.00" y="192.35" width="60.00" height="167.65" fill="#4C78A8" />
+<text x="270.00" y="184.35" text-anchor="middle" font-size="12" font-family="Arial">19</text>
+<text x="270.00" y="380.00" text-anchor="end" transform="rotate(-35 270.00,380.00)" font-size="12" font-family="Arial">thats</text>
+<rect x="320.00" y="210.00" width="60.00" height="150.00" fill="#4C78A8" />
+<text x="350.00" y="202.00" text-anchor="middle" font-size="12" font-family="Arial">17</text>
+<text x="350.00" y="380.00" text-anchor="end" transform="rotate(-35 350.00,380.00)" font-size="12" font-family="Arial">fuck</text>
+<rect x="400.00" y="218.82" width="60.00" height="141.18" fill="#4C78A8" />
+<text x="430.00" y="210.82" text-anchor="middle" font-size="12" font-family="Arial">16</text>
+<text x="430.00" y="380.00" text-anchor="end" transform="rotate(-35 430.00,380.00)" font-size="12" font-family="Arial">want</text>
+<rect x="480.00" y="218.82" width="60.00" height="141.18" fill="#4C78A8" />
+<text x="510.00" y="210.82" text-anchor="middle" font-size="12" font-family="Arial">16</text>
+<text x="510.00" y="380.00" text-anchor="end" transform="rotate(-35 510.00,380.00)" font-size="12" font-family="Arial">good</text>
+<rect x="560.00" y="218.82" width="60.00" height="141.18" fill="#4C78A8" />
+<text x="590.00" y="210.82" text-anchor="middle" font-size="12" font-family="Arial">16</text>
+<text x="590.00" y="380.00" text-anchor="end" transform="rotate(-35 590.00,380.00)" font-size="12" font-family="Arial">right</text>
+<rect x="640.00" y="218.82" width="60.00" height="141.18" fill="#4C78A8" />
+<text x="670.00" y="210.82" text-anchor="middle" font-size="12" font-family="Arial">16</text>
+<text x="670.00" y="380.00" text-anchor="end" transform="rotate(-35 670.00,380.00)" font-size="12" font-family="Arial">lie</text>
+<rect x="720.00" y="227.65" width="60.00" height="132.35" fill="#4C78A8" />
+<text x="750.00" y="219.65" text-anchor="middle" font-size="12" font-family="Arial">15</text>
+<text x="750.00" y="380.00" text-anchor="end" transform="rotate(-35 750.00,380.00)" font-size="12" font-family="Arial">down</text>
+<rect x="800.00" y="227.65" width="60.00" height="132.35" fill="#4C78A8" />
+<text x="830.00" y="219.65" text-anchor="middle" font-size="12" font-family="Arial">15</text>
+<text x="830.00" y="380.00" text-anchor="end" transform="rotate(-35 830.00,380.00)" font-size="12" font-family="Arial">love</text>
+</svg>

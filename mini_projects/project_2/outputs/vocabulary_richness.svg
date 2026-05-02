@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500">
+<rect width="900" height="500" fill="white" />
+<text x="450.0" y="30" text-anchor="middle" font-size="22" font-family="Arial">Vocabulary Richness by Album</text>
+<line x1="70" y1="360" x2="870" y2="360" stroke="black" />
+<line x1="70" y1="60" x2="70" y2="360" stroke="black" />
+<rect x="80.00" y="60.00" width="380.00" height="300.00" fill="#F58518" />
+<text x="270.00" y="52.00" text-anchor="middle" font-size="12" font-family="Arial">0.395</text>
+<text x="270.00" y="380.00" text-anchor="end" transform="rotate(-35 270.00,380.00)" font-size="12" font-family="Arial">Short n' Sweet</text>
+<rect x="480.00" y="66.81" width="380.00" height="293.19" fill="#F58518" />
+<text x="670.00" y="58.81" text-anchor="middle" font-size="12" font-family="Arial">0.386</text>
+<text x="670.00" y="380.00" text-anchor="end" transform="rotate(-35 670.00,380.00)" font-size="12" font-family="Arial">emails i can't send</text>
+</svg>
