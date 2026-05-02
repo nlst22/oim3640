@@ -6,7 +6,7 @@ Receipt Splitter is a Flask web app that builds on Project 1's itemized bill-spl
 
 Try the deployed version here:
 
-https://bill-splitter-18eb.onrender.com/
+https://receipt-splitter-l9w7.onrender.com
 
 ## Current features
 
