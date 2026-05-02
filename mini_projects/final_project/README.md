@@ -8,6 +8,12 @@ Try the deployed version here:
 
 https://receipt-splitter-l9w7.onrender.com
 
+## Demo video
+
+Project demo video: Local usage of OCR
+
+[final_project_demo_video.mp4](./final_project_demo_video.mp4)
+
 ## Current features
 
 - upload a receipt image, text file, or CSV file
