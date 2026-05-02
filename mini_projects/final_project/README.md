@@ -51,6 +51,44 @@ From the repository root:
 pip install -r mini_projects/final_project/requirements.txt
 ```
 
+## Run locally
+
+From the repository root:
+
+```powershell
+python mini_projects/final_project/app.py
+```
+
+Then open:
+
+```text
+http://127.0.0.1:5000
+```
+
+If port `5000` is already in use, you can choose another port:
+
+```powershell
+$env:PORT="5051"
+python mini_projects/final_project/app.py
+```
+
+Then open:
+
+```text
+http://127.0.0.1:5051
+```
+
+## Deploy on Render
+
+This project now includes a Docker-based Render setup so image OCR can work on Linux.
+
+Deployment files:
+
+- `mini_projects/final_project/Dockerfile`
+- `render.yaml`
+
+The Docker image installs the Linux `tesseract-ocr` package and then starts the app with Gunicorn.
+
 ## OCR setup note
 
 Image OCR needs:
@@ -64,6 +102,8 @@ On this project, the code is set up to look for Tesseract here on Windows:
 ```text
 C:\Program Files\Tesseract-OCR\tesseract.exe
 ```
+
+On Linux hosts such as Render, the app also checks for `tesseract` on the system `PATH` or in the `TESSERACT_CMD` environment variable.
 
 If OCR is not available, the app still works with pasted receipt text.
 

@@ -1,4 +1,6 @@
+import os
 import re
+import shutil
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from io import BytesIO
 from pathlib import Path
@@ -21,6 +23,22 @@ IGNORE_WORDS = {
     "amex",
 }
 EXACT_IGNORE_WORDS = {"ta"}
+
+
+def resolve_tesseract_command():
+    """Find a usable Tesseract executable on Windows or Linux."""
+    configured_path = os.getenv("TESSERACT_CMD", "").strip()
+    if configured_path:
+        return configured_path
+
+    if WINDOWS_TESSERACT_PATH.exists():
+        return str(WINDOWS_TESSERACT_PATH)
+
+    path_command = shutil.which("tesseract")
+    if path_command:
+        return path_command
+
+    return None
 
 
 def money(value):
@@ -99,8 +117,9 @@ def extract_text_from_upload(file_storage):
         return "", "Image OCR needs Pillow and pytesseract installed. You can paste receipt text instead."
 
     try:
-        if WINDOWS_TESSERACT_PATH.exists():
-            pytesseract.pytesseract.tesseract_cmd = str(WINDOWS_TESSERACT_PATH)
+        tesseract_command = resolve_tesseract_command()
+        if tesseract_command:
+            pytesseract.pytesseract.tesseract_cmd = tesseract_command
 
         image = Image.open(BytesIO(data))
         image = ImageOps.exif_transpose(image)
@@ -111,7 +130,7 @@ def extract_text_from_upload(file_storage):
         text = pytesseract.image_to_string(image, config="--psm 6")
         return text, None
     except pytesseract.TesseractNotFoundError:
-        return "", "Tesseract OCR was not found. Check that C:\\Program Files\\Tesseract-OCR\\tesseract.exe exists."
+        return "", "Tesseract OCR was not found on this server. Install the Tesseract program or set TESSERACT_CMD."
     except Exception as exc:
         return "", f"I could not read that image: {exc}"
 

@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: bill-splitter
+    env: docker
+    dockerfilePath: ./mini_projects/final_project/Dockerfile
+    plan: free
+    autoDeploy: true
